@@ -1,0 +1,9 @@
+{
+  "version": "1",
+  "name": "LMAPI",
+  "type": "collection",
+  "ignore": [
+    "node_modules",
+    ".git"
+  ]
+}
