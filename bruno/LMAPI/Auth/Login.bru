@@ -5,12 +5,17 @@ meta {
 }
 
 post {
-  url: http://127.0.0.1:8000/api/login
+  url: {{host}}:{{port}}/api/login
   body: multipartForm
   auth: none
 }
 
 body:multipart-form {
-  email: bruno@example.com
+  email: roger89@example.com
   password: password
+}
+
+script:post-response {
+  const bearerToken = res.body.data.token;
+  bru.setEnvVar('bearerToken', bearerToken);
 }
