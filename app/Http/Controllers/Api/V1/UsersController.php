@@ -14,6 +14,10 @@ class UsersController extends ApiController
      */
     public function index()
     {
+        if ($this->contain('tickets')) {
+            return UserResource::collection(User::with('tickets')->paginate());
+        }
+
         return UserResource::collection(User::paginate());
     }
 
@@ -30,6 +34,10 @@ class UsersController extends ApiController
      */
     public function show(User $user)
     {
+        if ($this->contain('tickets')) {
+            return new UserResource($user->load('tickets'));
+        }
+
         return new UserResource($user);
     }
 

@@ -5,9 +5,13 @@ meta {
 }
 
 get {
-  url: {{baseUrl}}/v1/users
+  url: {{baseUrl}}/v1/users?includes=tickets
   body: none
   auth: bearer
+}
+
+params:query {
+  includes: tickets
 }
 
 auth:bearer {
