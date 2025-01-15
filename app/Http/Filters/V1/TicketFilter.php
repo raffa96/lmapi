@@ -9,8 +9,39 @@ class TicketFilter extends QueryFilter
         return $this->builder->with($value);
     }
 
+    public function createdAt($value)
+    {
+        $dates = explode(',', $value);
+
+        if (count($dates) > 1) {
+            return $this->builder->whereBetween('created_at', $dates);
+        }
+
+        return $this->builder->whereDate('created_at', $value);
+    }
+
+    public function updatedAt($value)
+    {
+        $dates = explode(',', $value);
+
+        if (count($dates) > 1) {
+            return $this->builder->whereBetween('updated_at', $dates);
+        }
+
+        return $this->builder->whereDate('updated_at', $value);
+    }
+
     public function status($value)
     {
-        return $this->builder->where('status', $value);
+        $chars = explode(',', $value);
+
+        return $this->builder->whereIn('status', $chars);
+    }
+
+    public function title($value)
+    {
+        $likeStr = str_replace('*', '%', $value);
+
+        return $this->builder->where('title', 'like', $likeStr);
     }
 }
