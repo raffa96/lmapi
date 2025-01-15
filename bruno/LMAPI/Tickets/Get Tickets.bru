@@ -5,9 +5,14 @@ meta {
 }
 
 get {
-  url: {{baseUrl}}/v1/tickets
+  url: {{baseUrl}}/v1/tickets?status=C&include=author
   body: none
   auth: bearer
+}
+
+params:query {
+  status: C
+  include: author
 }
 
 auth:bearer {
